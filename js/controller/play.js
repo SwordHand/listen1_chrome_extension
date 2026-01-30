@@ -838,7 +838,13 @@ angular.module('listenone').controller('PlayController', [
         } else if (message === 'left') {
           l1Player.prev();
         } else if (message === 'space') {
-          l1Player.togglePlayPause();
+          $scope.$evalAsync(() => {
+            if ($scope.isPlaying) {
+              l1Player.pause();
+            } else {
+              l1Player.play();
+            }
+          });
         }
       });
     }
